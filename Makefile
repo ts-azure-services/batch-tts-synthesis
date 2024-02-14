@@ -20,7 +20,6 @@ voice="en-US-FableMultilingualNeural"
 sample:
 	.venv/bin/python ./synthesis.py --voice=$(voice)
 
-
 # Commit local branch changes
 branch=$(shell git symbolic-ref --short HEAD)
 now=$(shell date '+%F_%H:%M:%S' )
