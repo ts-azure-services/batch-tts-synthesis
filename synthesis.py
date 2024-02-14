@@ -103,8 +103,13 @@ def download_results(job_id):
         download_link = None
         download_link = response.json()['outputs']['result']
         if download_link:
+            # Create an outputs directory
+            if not os.path.exists('./outputs'):
+                os.makedirs('./outputs')
+
+            # Download response
             response = requests.get(download_link, stream=True)
-            with open('./inputs/results.zip', 'wb') as fd:
+            with open('./outputs/results.zip', 'wb') as fd:
                 for chunk in response.iter_content(chunk_size=128):
                     fd.write(chunk)
             logger.info('Downloaded results successfully.')

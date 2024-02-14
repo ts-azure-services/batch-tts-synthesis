@@ -9,6 +9,7 @@ __pycache__/
 *.env
 results/
 results.zip
+outputs/
 
 # Distribution / packaging
 .Python

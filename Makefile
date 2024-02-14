@@ -13,8 +13,19 @@ initialize:
 setup:
 	./setup.sh
 
-synthesize-jenny:
-	python ./inputs/synthesis.py --voice="en-US-JennyNeural"
+# voice="en-US-JennyNeural"
+# voice="ar-AE-FatimaNeural"
+# New OpenAI voices
+voice="en-US-FableMultilingualNeural"
+sample:
+	.venv/bin/python ./synthesis.py --voice=$(voice)
 
-synthesize-fatima:
-	python ./inputs/synthesis.py --voice="ar-AE-FatimaNeural"
+
+# Commit local branch changes
+branch=$(shell git symbolic-ref --short HEAD)
+now=$(shell date '+%F_%H:%M:%S' )
+git-push:
+	git add . && git commit -m "Changes as of $(now)" && git push -u origin $(branch)
+
+git-pull:
+	git pull origin $(branch)
